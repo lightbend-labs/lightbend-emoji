@@ -20,14 +20,14 @@ class EmojiSpec extends WordSpec {
       import Emoji.Implicits._
 
       val ramen = Emoji(0x1f35c)
-      "1f35c".emoji should be(ramen)
+      "1f35c".codePointEmoji should be(ramen)
     }
 
     "map hexcode correctly using a leading 0x" in {
       import Emoji.Implicits._
 
       val ramen = Emoji(0x1f35c)
-      "0x1f35c".emoji should be(ramen)
+      "0x1f35c".codePointEmoji should be(ramen)
     }
 
     "map raw integers correctly" in {

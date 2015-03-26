@@ -121,8 +121,7 @@ object ShortCodes {
     implicit class ShortCodeString(shortCode: String) {
       def emoji(implicit shortCodes: ShortCodes): Emoji = {
         shortCodes.emoji(shortCode).getOrElse {
-          // Fall back to hexcode if we don't find a short code.
-          new Emoji.Implicits.RichStringEmoji(shortCode).emoji
+          throw new EmojiNotFound("No emoji found for short code")
         }
       }
     }

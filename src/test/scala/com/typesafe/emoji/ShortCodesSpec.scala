@@ -23,14 +23,6 @@ class ShortCodesSpec extends WordSpec {
       "point_right".emoji.toString should be(s"$pointRightEmoji")
     }
 
-    "fallback to mapping hexcode to emoji using the implicit class" in {
-      import ShortCodes.Defaults._
-
-      // we don't want to stomp on Emoji.Implicits._ if they are both defined.
-      val pointRightEmoji = new String(Character.toChars(0x1f449))
-      "0x1f449".emoji.toString should be(s"$pointRightEmoji")
-    }
-
   }
 
   "ShortCodes" should {

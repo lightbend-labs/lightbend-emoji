@@ -49,7 +49,9 @@ object Emoji {
   object Implicits {
 
     implicit class RichStringEmoji(string: String) {
-      def emoji: Emoji = {
+
+      // Don't want this to conflict with shortCode.emoji
+      def codePointEmoji: Emoji = {
         val codePoint = Try(Integer.parseInt(string, 16)).recover {
           case e: NumberFormatException =>
             val stripped = string.replace("0x", "")
