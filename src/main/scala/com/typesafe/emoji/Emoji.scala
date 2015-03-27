@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2015 Typesafe Inc. <http://www.typesafe.com>
+ */
 package com.typesafe.emoji
 
 import scala.util.Try
@@ -7,7 +10,7 @@ import scala.util.Try
  *
  * @param codePoint the codepoint representing the Emoji character
  */
-class Emoji private(val codePoint: Int) extends AnyVal {
+class Emoji private (val codePoint: Int) extends AnyVal {
 
   /**
    * Returns the sequence of characters (usually surrogate pairs).
