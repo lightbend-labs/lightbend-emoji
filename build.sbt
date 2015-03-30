@@ -14,6 +14,8 @@ scalaVersion := scala210Version
 
 crossScalaVersions := Seq(scala210Version, scala211Version)
 
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
 val typesafeIvyReleases = Resolver.url("typesafe-ivy-private-releases", new URL("http://private-repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns)
 
 publishTo := Some(typesafeIvyReleases)
@@ -25,9 +27,7 @@ scalacOptions <<= (scalaVersion) map { sv =>
     { if (sv.startsWith("2.9")) Seq.empty else Seq("-feature") }
 }
 
-javacOptions in Compile := Seq("-target", "1.6", "-source", "1.6")
-
-javacOptions in (Compile, doc) := Seq("-source", "1.6")
+javacOptions in (Compile, doc) := Seq("-target", "1.6", "-source", "1.6")
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
