@@ -7,7 +7,9 @@ Typesafe Emoji is a wrapper around Java's Unicode Character handling.
 Add to build.sbt
 
 ```
-libraryDependencies += "com.typesafe" % "emoji" % "1.0.0"
+resolvers += Resolver.typesafeIvyRepo("releases")
+
+libraryDependencies += "com.typesafe" %% "emoji" % "1.0.0"
 ```
 
 ## Usage
@@ -74,3 +76,4 @@ res1: com.typesafe.emoji.Emoji = 😃
 ## Bugs
 
 Sadly, there is no direct mapping to [emoji-cheat-sheet](http://www.emoji-cheat-sheet.com/) or [emoji searcher](http://emoji.muan.co/), because some emoji are mapped directly to glyphs, without [Unicode involvement](http://apps.timwhitlock.info/emoji/tables/unicode), e.g. [:neckbeard:](https://signalvnoise.com/posts/3395-neckbeard).
+
