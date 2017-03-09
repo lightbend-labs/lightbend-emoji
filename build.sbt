@@ -4,15 +4,15 @@ name := "emoji"
 
 organization := "com.typesafe"
 
-version := "1.0.0"
+version := "1.1.0"
 
 lazy val scala210Version = "2.10.5"
+lazy val scala211Version = "2.11.8"
+lazy val scala212Version = "2.12.1"
 
-lazy val scala211Version = "2.11.6"
+scalaVersion := scala212Version
 
-scalaVersion := scala210Version
-
-crossScalaVersions := Seq(scala210Version, scala211Version)
+crossScalaVersions := Seq(scala212Version, scala211Version, scala210Version)
 
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
@@ -32,7 +32,7 @@ javacOptions in (Compile, doc) := Seq("-target", "1.6", "-source", "1.6")
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.0" % Test
 )
 
 initialCommands in console := {
