@@ -24,14 +24,6 @@ publishMavenStyle := false
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
-javacOptions in (Compile, doc) ++=
-  (CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some ((2, n)) if n <= 11 =>
-      Seq("-target", "1.6", "-source", "1.6")
-    case _ =>
-      Seq()
-  })
-
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
