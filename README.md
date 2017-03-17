@@ -2,6 +2,10 @@
 
 Typesafe Emoji is a wrapper around Java's Unicode Character handling. 
 
+## Examples
+
+For an example of Typesafe Emoji in an Enterprise Mission Critical Environment, please see [Typesafe Emojr](https://github.com/typesafehub/typesafe-emojr).
+
 ## Installation
 
 Add to build.sbt
