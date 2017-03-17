@@ -6,7 +6,7 @@ organization := "com.typesafe"
 
 version := "1.1.0"
 
-lazy val scala210Version = "2.10.5"
+lazy val scala210Version = "2.10.6"
 lazy val scala211Version = "2.11.8"
 lazy val scala212Version = "2.12.1"
 
@@ -22,17 +22,12 @@ publishTo := Some(typesafeIvyReleases)
 
 publishMavenStyle := false
 
-scalacOptions <<= (scalaVersion) map { sv =>
-  Seq("-unchecked", "-deprecation") ++
-    { if (sv.startsWith("2.9")) Seq.empty else Seq("-feature") }
-}
-
-javacOptions in (Compile, doc) := Seq("-target", "1.6", "-source", "1.6")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings")
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.0.0" % Test
+  "org.scalatest" %% "scalatest" % "3.0.1" % Test
 )
 
 initialCommands in console := {
