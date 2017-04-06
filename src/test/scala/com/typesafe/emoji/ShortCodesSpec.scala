@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2015-2017 Lightbend Inc. <http://www.lightbend.com>
  */
-package com.typesafe.emoji
+package com.lightbend.emoji
 
 import org.scalatest.Matchers._
 import org.scalatest._
