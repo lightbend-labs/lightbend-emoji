@@ -14,11 +14,10 @@ scalaVersion := scala212Version
 
 crossScalaVersions := Seq(scala212Version, scala211Version, scala210Version)
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
-
-val typesafeIvyReleases = Resolver.url("typesafe-ivy-private-releases", new URL("http://private-repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns)
-
-publishTo := Some(typesafeIvyReleases)
+bintrayOrganization := Some("typesafe")
+bintrayRepository := "ivy-releases"
+bintrayPackage := "emoji"
+bintrayReleaseOnPublish := false
 
 publishMavenStyle := false
 
