@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2015-2017 Lightbend Inc. <http://www.lightbend.com>
+ */
 package com.typesafe.emoji
 
 import org.scalatest._
