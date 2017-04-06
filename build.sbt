@@ -2,7 +2,7 @@ import com.typesafe.sbt.SbtGit
 
 name := "emoji"
 
-organization := "com.typesafe"
+organization := "com.lightbend"
 
 version := "1.1.0"
 
@@ -31,9 +31,9 @@ libraryDependencies ++= Seq(
 )
 
 initialCommands in console := {
-  """import com.typesafe.emoji._
-    |import com.typesafe.emoji.Emoji.Implicits._
-    |import com.typesafe.emoji.ShortCodes.Implicits._
+  """import com.lightbend.emoji._
+    |import com.lightbend.emoji.Emoji.Implicits._
+    |import com.lightbend.emoji.ShortCodes.Implicits._
     |""".stripMargin
 }
 

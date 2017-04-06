@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2015 Typesafe Inc. <http://www.typesafe.com>
+ * Copyright (C) 2015-2017 Lightbend Inc. <http://www.lightbend.com>
  */
-package com.typesafe.emoji
+package com.lightbend.emoji
 
 import scala.util.Try
 

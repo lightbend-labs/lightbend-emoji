@@ -1,10 +1,14 @@
-# Typesafe Emoji
+# Lightbend Emoji
 
-Typesafe Emoji is a wrapper around Java's Unicode Character handling. 
+Lightbend Emoji is a wrapper around Java's Unicode Character handling.
 
 ## Examples
 
-For an example of Typesafe Emoji in an Enterprise Mission Critical Environment, please see [Typesafe Emojr](https://github.com/typesafehub/typesafe-emojr).
+For an example of Lightbend Emoji in an Enterprise Mission Critical Environment, please see [Typesafe Emojr](https://github.com/typesafehub/typesafe-emojr).
+
+Note that Typesafe Emojr has not been Lightbend-rebranded or ported
+to Scala 2.12. To register your interest in an updated version, please
+contact Lightbend's enterprise sales team.
 
 ## Installation
 
@@ -13,31 +17,31 @@ Add to build.sbt
 ```
 resolvers += Resolver.typesafeIvyRepo("releases")
 
-libraryDependencies += "com.typesafe" %% "emoji" % "1.0.0"
+libraryDependencies += "com.lightbend" %% "emoji" % "1.1.1"
 ```
 
 ## Usage
 
 ```
 $ sbt console
-scala> import com.typesafe.emoji._
-scala> import com.typesafe.emoji.Emoji.Implicits._
+scala> import com.lightbend.emoji._
+scala> import com.lightbend.emoji.Emoji.Implicits._
 ```
 
 You can map Emoji directly from a Unicode character:
 
 ```
 scala> Emoji(0x1f603)
-res0: comp.typesafe.emoji.Emoji = 😃
+res0: com.lightbend.emoji.Emoji = 😃
 ```
 
 Or you can map the implicit from Int or String:
 
 ```
 scala> 0x1f603.emoji
-res1: comp.typesafe.emoji.Emoji = 😃
+res1: com.lightbend.emoji.Emoji = 😃
 scala> "0x1f603".codePointEmoji
-res2: com.typesafe.emoji.Emoji = 😃
+res2: com.lightbend.emoji.Emoji = 😃
 ```
 
 Once you have an emoji, you can ask it for codePoint (Int) or hexidecimal value:
@@ -54,10 +58,10 @@ Unicode codepoints are not very convenient, so there's a ShortCodes class which 
 There is a default mapping available, which allows you to map from a string directly to an emoji:
 
 ```
-scala> import com.typesafe.emoji.ShortCodes.Implicits._
-scala> import com.typesafe.emoji.ShortCodes.Defaults._
+scala> import com.lightbend.emoji.ShortCodes.Implicits._
+scala> import com.lightbend.emoji.ShortCodes.Defaults._
 scala> "smiley".emoji
-res5: com.typesafe.emoji.Emoji = 😃
+res5: com.lightbend.emoji.Emoji = 😃
 ```
 
 You can query the current mapping for short codes:
@@ -71,10 +75,10 @@ Finally, you can also use your own short codes mapping:
 
 ```
 scala> implicit val mycodes = new ShortCodes()
-mycodes: com.typesafe.emoji.ShortCodes = com.typesafe.emoji.ShortCodes@49fd69f5
+mycodes: com.lightbend.emoji.ShortCodes = com.lightbend.emoji.ShortCodes@49fd69f5
 scala> mycodes.entry(Emoji(0x1f603), "yay")
 scala> "yay".emoji
-res1: com.typesafe.emoji.Emoji = 😃
+res1: com.lightbend.emoji.Emoji = 😃
 ```
 
 ## Bugs
