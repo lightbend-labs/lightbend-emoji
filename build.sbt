@@ -4,7 +4,7 @@ name := "emoji"
 
 organization := "com.lightbend"
 
-version := "1.1.0"
+version := "1.1.1"
 
 lazy val scala210Version = "2.10.6"
 lazy val scala211Version = "2.11.8"
