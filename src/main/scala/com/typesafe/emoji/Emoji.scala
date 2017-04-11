@@ -23,7 +23,7 @@ class Emoji private (val codePoint: Int) extends AnyVal {
   def name: String = Emoji.name(this.codePoint)
 
   /**
-   * Returns the hexidecimal code.
+   * Returns the hexadecimal code.
    *
    * @return
    */
@@ -60,7 +60,7 @@ object Emoji {
             val stripped = string.replace("0x", "")
             Integer.parseInt(stripped, 16)
         }.getOrElse {
-          throw new EmojiNotFound("Cannot parse emoji from hexidecimal string")
+          throw new EmojiNotFound("Cannot parse emoji from hexadecimal string")
         }
         Emoji(codePoint)
       }
@@ -145,7 +145,7 @@ object Emoji {
   }
 
   /**
-   * Returns the hexidecimal string of the code point.
+   * Returns the hexadecimal string of the code point.
    */
   def toHexString(codePoint: Int): String = {
     codePoint.toHexString

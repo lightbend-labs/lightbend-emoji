@@ -44,7 +44,7 @@ scala> "0x1f603".codePointEmoji
 res2: com.lightbend.emoji.Emoji = 😃
 ```
 
-Once you have an emoji, you can ask it for codePoint (Int) or hexidecimal value:
+Once you have an emoji, you can ask it for codePoint (Int) or hexadecimal value:
 
 ```
 scala> res2.hex
