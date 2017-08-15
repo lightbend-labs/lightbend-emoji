@@ -6,13 +6,12 @@ organization := "com.lightbend"
 
 version := "1.1.1"
 
-lazy val scala210Version = "2.10.6"
-lazy val scala211Version = "2.11.8"
-lazy val scala212Version = "2.12.1"
+lazy val scala211Version = "2.11.11"
+lazy val scala212Version = "2.12.3"
 
 scalaVersion := scala212Version
 
-crossScalaVersions := Seq(scala212Version, scala211Version, scala210Version)
+crossScalaVersions := Seq(scala212Version, scala211Version)
 
 bintrayOrganization := Some("typesafe")
 bintrayRepository := "ivy-releases"
@@ -26,7 +25,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.0.1" % Test
+  "org.scalatest" %% "scalatest" % "3.0.3" % Test
 )
 
 initialCommands in console := {
