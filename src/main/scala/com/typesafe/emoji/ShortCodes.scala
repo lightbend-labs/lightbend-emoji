@@ -4,7 +4,7 @@
 package com.lightbend.emoji
 
 /**
- * A emoji to shortcode mapping.  This is a class that should be declared and used
+ * An emoji to shortcode mapping.  This is a class that should be declared and used
  * as an implicit value, so that shortcode mappings don't have to be global across
  * an application.
  *
