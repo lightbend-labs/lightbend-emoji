@@ -95,7 +95,7 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   }
 
   /**
-   * Completely removes the
+   * Completely removes the emoji and shortcodes from the mapping.
    */
   def clear(): Unit = {
     emojiToShortCodes.clear()
