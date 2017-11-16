@@ -4,7 +4,7 @@ organization := "com.lightbend"
 
 version := "1.1.2-SNAPSHOT"
 
-crossScalaVersions := Seq("2.12.3", "2.11.11")
+crossScalaVersions := Seq("2.12.4", "2.11.12")
 scalaVersion := crossScalaVersions.value.head
 
 bintrayOrganization := Some("typesafe")
@@ -14,7 +14,12 @@ bintrayReleaseOnPublish := false
 
 publishMavenStyle := false
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings", "-Xlint")
+
+scalacOptions in (Compile, console) ~= (_ filterNot Set(
+  "-Xlint",
+  "-Xfatal-warnings"
+))
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

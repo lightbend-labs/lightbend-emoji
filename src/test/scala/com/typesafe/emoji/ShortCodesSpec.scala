@@ -63,4 +63,34 @@ class ShortCodesSpec extends WordSpec {
 
   }
 
+  "The Emojilator" should {
+
+    "allow short names between colons" in {
+      import ShortCodes.Defaults._
+
+      val eye = "I"
+      val heart = "heart".emoji
+
+      e"$eye :heart: Scala" should be(s"I $heart Scala")
+    }
+
+    "ignore short names in interpolated args" in {
+      import ShortCodes.Defaults._
+
+      val eye = "I"
+      val heart = ":heart:"
+
+      e"$eye $heart Scala" should be(s"I :heart: Scala")
+    }
+
+    "accept double colon as literal colon" in {
+      import ShortCodes.Defaults._
+
+      val eye = "I"
+      val heart = "heart".emoji
+
+      e"$eye :heart::: Scala" should be(s"I $heart: Scala")
+    }
+  }
+
 }
