@@ -64,11 +64,29 @@ scala> "smiley".emoji
 res5: com.lightbend.emoji.Emoji = 😃
 ```
 
+ShortCodes are not very convenient, so there's an emoji interpolator for constructing strings using familiar syntax:
+
+```
+scala> e"Have a nice day! :smiley:"
+res6: String = Have a nice day! 😃
+```
+
+It supports the same escapes as the standard interpolator, and is forgiving of colons that don't delimit a valid
+short name.  Use double colon to specify literal colon:
+
+```
+scala> e"Dear Customer: Have a nice day! :) :smiley:"
+res7: String = Dear Customer: Have a nice day! :) 😃
+
+scala> e"::smiley:: is interpolated as :smiley:"
+res8: String = :smiley: is interpolated as 😃
+```
+
 You can query the current mapping for short codes:
 
 ```
 scala> ShortCodes.current.shortCodes.filter(_.startsWith("heart"))
-res6: scala.collection.Set[String] = Set(heart_decoration, heart_eyes_cat, hearts, heart_eyes, heartpulse, heart, heartbeat)
+res9: scala.collection.Set[String] = Set(heart_decoration, heart_eyes_cat, hearts, heart_eyes, heartpulse, heart, heartbeat)
 ```
 
 Finally, you can also use your own short codes mapping:
@@ -80,7 +98,6 @@ scala> mycodes.entry(Emoji(0x1f603), "yay")
 scala> "yay".emoji
 res1: com.lightbend.emoji.Emoji = 😃
 ```
-
 ## Bugs
 
 Sadly, there is no direct mapping to [emoji-cheat-sheet](http://www.emoji-cheat-sheet.com/) or [emoji searcher](http://emoji.muan.co/), because some emoji are mapped directly to glyphs, without [Unicode involvement](http://apps.timwhitlock.info/emoji/tables/unicode), e.g. [:neckbeard:](https://signalvnoise.com/posts/3395-neckbeard).

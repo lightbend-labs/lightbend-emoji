@@ -135,14 +135,15 @@ object ShortCodes {
       }
     }
 
-    private val colonSyntax = ":([^:]*):".r
+    private val colonSyntax = ":([a-zA-Z0-9_+-]*):".r
 
     implicit class Emojilator(sc: StringContext) {
       def e(args: Any*)(implicit shortCodes: ShortCodes): String = {
-        def emojify(s: String): String = colonSyntax.replaceAllIn(s, _.group(1) match {
-          case "" => ":" // take double colon "::" as literal colon
-          case name => name.emoji.toString
-        })
+        def emojify(s: String): String = colonSyntax.replaceAllIn(s, m =>
+          try m.group(1) match {
+            case "" => ":" // take double colon "::" as literal colon
+            case name => name.emoji.toString
+          } catch { case _: EmojiNotFound => m.matched })
         val parts = sc.parts.map(emojify)
         StringContext(parts: _*).s(args: _*)
       }
