@@ -14,7 +14,12 @@ bintrayReleaseOnPublish := false
 
 publishMavenStyle := false
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings", "-Xlint")
+
+scalacOptions in (Compile, console) ~= (_ filterNot Set(
+  "-Xlint",
+  "-Xfatal-warnings"
+))
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
