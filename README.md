@@ -98,6 +98,14 @@ scala> mycodes.entry(Emoji(0x1f603), "yay")
 scala> "yay".emoji
 res1: com.lightbend.emoji.Emoji = 😃
 ```
+
+## Similar Works
+
+These libraries have not been evaluated, and they may work or not:
+
+* https://github.com/vdurmont/emoji-java
+* https://github.com/kcthota/emoji4j
+
 ## Bugs
 
 Sadly, there is no direct mapping to [emoji-cheat-sheet](http://www.emoji-cheat-sheet.com/) or [emoji searcher](http://emoji.muan.co/), because some emoji are mapped directly to glyphs, without [Unicode involvement](http://apps.timwhitlock.info/emoji/tables/unicode), e.g. [:neckbeard:](https://signalvnoise.com/posts/3395-neckbeard).
