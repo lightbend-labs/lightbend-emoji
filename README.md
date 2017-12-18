@@ -17,7 +17,7 @@ Add to build.sbt
 ```
 resolvers += Resolver.typesafeIvyRepo("releases")
 
-libraryDependencies += "com.lightbend" %% "emoji" % "1.1.1"
+libraryDependencies += "com.lightbend" %% "emoji" % "1.2.0"
 ```
 
 ## Usage
@@ -109,4 +109,3 @@ These libraries have not been evaluated, and they may work or not:
 ## Bugs
 
 Sadly, there is no direct mapping to [emoji-cheat-sheet](http://www.emoji-cheat-sheet.com/) or [emoji searcher](http://emoji.muan.co/), because some emoji are mapped directly to glyphs, without [Unicode involvement](http://apps.timwhitlock.info/emoji/tables/unicode), e.g. [:neckbeard:](https://signalvnoise.com/posts/3395-neckbeard).
-
