@@ -2,7 +2,7 @@ name := "emoji"
 
 organization := "com.lightbend"
 
-version := "1.2.0"
+version := "1.2.1-SNAPSHOT"
 
 crossScalaVersions := Seq("2.12.4", "2.11.12")
 scalaVersion := crossScalaVersions.value.head
