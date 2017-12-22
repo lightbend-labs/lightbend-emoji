@@ -150,7 +150,7 @@ object ShortCodes {
         def partly(part: String): Unit = {
           try sb append process(part)
           catch {
-            case e: InvalidEscapeException if e.getMessage startsWith "invalid escape '\\:'" =>
+            case e: InvalidEscapeException if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
               sb append process(part.substring(0, e.index))
               sb append ":"
               partly(part.substring(e.index + 2))
