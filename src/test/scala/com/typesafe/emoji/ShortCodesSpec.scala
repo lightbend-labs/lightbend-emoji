@@ -100,6 +100,17 @@ class ShortCodesSpec extends WordSpec {
       e"Dear Customer: Have a nice day! :) :smiley:" should be(s"Dear Customer: Have a nice day! :) $smiley")
     }
 
+    "also accept backslash-escaped colon as literal colon" in {
+      import ShortCodes.Defaults._
+
+      val eye = "I"
+      val heart = "heart".emoji
+
+      e"$eye :heart:\: Scala" should be(s"I $heart: Scala")
+      e"$eye \:heart:\: Scala" should be(s"I :heart:: Scala")
+      e"$eye \::heart:\: Scala" should be(s"I :$heart: Scala")
+    }
+
     "not go kaput on bad short name" in {
       import ShortCodes.Defaults._
 
