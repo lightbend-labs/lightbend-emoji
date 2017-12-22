@@ -72,13 +72,13 @@ res6: String = Have a nice day! 😃
 ```
 
 It supports the same escapes as the standard interpolator, and is forgiving of colons that don't delimit a valid
-short name.  Use double colon to specify literal colon:
+short name.  The colon can be escaped with a backslash:
 
 ```
 scala> e"Dear Customer: Have a nice day! :) :smiley:"
 res7: String = Dear Customer: Have a nice day! :) 😃
 
-scala> e"::smiley:: is interpolated as :smiley:"
+scala> e"\:smiley\: is interpolated as :smiley:"
 res8: String = :smiley: is interpolated as 😃
 ```
 

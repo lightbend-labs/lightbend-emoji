@@ -135,17 +135,15 @@ object ShortCodes {
       }
     }
 
-    private val colonSyntax = ":([a-zA-Z0-9_+-]*):".r
+    private val colonSyntax = ":([a-zA-Z0-9_+-]+):".r
 
     implicit class Emojilator(sc: StringContext) {
       import StringContext.InvalidEscapeException
 
       def e(args: Any*)(implicit shortCodes: ShortCodes): String = {
         def emojify(s: String): String = colonSyntax.replaceAllIn(s, m =>
-          try m.group(1) match {
-            case "" => ":" // take double colon "::" as literal colon
-            case name => name.emoji.toString
-          } catch { case _: EmojiNotFound => m.matched })
+          try m.group(1).emoji.toString
+          catch { case _: EmojiNotFound => m.matched })
         sc.checkLengths(args)
         val sb = new java.lang.StringBuilder
         def process(part: String): String = emojify(StringContext.processEscapes(part))
