@@ -135,20 +135,37 @@ object ShortCodes {
       }
     }
 
-    private val colonSyntax = ":([a-zA-Z0-9_+-]*):".r
+    private val colonSyntax = ":([a-zA-Z0-9_+-]+):".r
 
     implicit class Emojilator(sc: StringContext) {
+      import StringContext.InvalidEscapeException
+
       def e(args: Any*)(implicit shortCodes: ShortCodes): String = {
         def emojify(s: String): String = colonSyntax.replaceAllIn(s, m =>
-          try m.group(1) match {
-            case "" => ":" // take double colon "::" as literal colon
-            case name => name.emoji.toString
-          } catch { case _: EmojiNotFound => m.matched })
-        val parts = sc.parts.map(emojify)
-        StringContext(parts: _*).s(args: _*)
+          try m.group(1).emoji.toString
+          catch { case _: EmojiNotFound => m.matched })
+        sc.checkLengths(args)
+        val sb = new java.lang.StringBuilder
+        def process(part: String): String = emojify(StringContext.processEscapes(part))
+        def partly(part: String): Unit = {
+          try sb append process(part)
+          catch {
+            case e: InvalidEscapeException if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
+              sb append process(part.substring(0, e.index))
+              sb append ":"
+              partly(part.substring(e.index + 2))
+          }
+        }
+        val pi = sc.parts.iterator
+        val ai = args.iterator
+        partly(pi.next())
+        while (ai.hasNext) {
+          sb append ai.next()
+          partly(pi.next())
+        }
+        sb.toString
       }
     }
-
   }
 
   /**

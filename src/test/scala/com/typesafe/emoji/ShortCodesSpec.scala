@@ -83,13 +83,12 @@ class ShortCodesSpec extends WordSpec {
       e"$eye $heart Scala" should be(s"I :heart: Scala")
     }
 
-    "accept double colon as literal colon" in {
+    "accept double colon as double colon" in {
       import ShortCodes.Defaults._
 
-      val eye = "I"
       val heart = "heart".emoji
 
-      e"$eye :heart::: Scala" should be(s"I $heart: Scala")
+      e"List of fave emojis = :heart: :: Nil" should be(s"List of fave emojis = $heart :: Nil")
     }
 
     "accept colon not followed by emoji char as literal colon" in {
@@ -98,6 +97,17 @@ class ShortCodesSpec extends WordSpec {
       val smiley = "smiley".emoji
 
       e"Dear Customer: Have a nice day! :) :smiley:" should be(s"Dear Customer: Have a nice day! :) $smiley")
+    }
+
+    "also accept backslash-escaped colon as literal colon" in {
+      import ShortCodes.Defaults._
+
+      val eye = "I"
+      val heart = "heart".emoji
+
+      e"$eye :heart:\: Scala" should be(s"I $heart: Scala")
+      e"$eye \:heart:\: Scala" should be(s"I :heart:: Scala")
+      e"$eye \::heart:\: Scala" should be(s"I :$heart: Scala")
     }
 
     "not go kaput on bad short name" in {
