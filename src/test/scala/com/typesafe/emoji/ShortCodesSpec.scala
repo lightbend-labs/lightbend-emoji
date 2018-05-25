@@ -30,6 +30,21 @@ class ShortCodesSpec extends WordSpec {
 
   "ShortCodes" should {
 
+    "default short codes sanity check" in {
+      import ShortCodes.Defaults._
+
+      val current = ShortCodes.current
+      current.shortCodes.size should be > 0
+      current.emojis.size should be > 0
+      current.shortCodes.foreach { shortCode =>
+        current.emoji(shortCode) match {
+          case Some(emoji) => Emoji.isEmoji(emoji.codePoint) shouldBe true
+          case None => fail(s"Unable to find Emoji for shortCode '${shortCode}")
+        }
+      }
+    }
+
+
     "pick up the current shortCode mapping" in {
       import ShortCodes.Defaults._
 
