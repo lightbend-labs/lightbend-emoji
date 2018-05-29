@@ -54,4 +54,24 @@ class EmojiSpec extends WordSpec {
     }
   }
 
+/*
+
+Note:  the US Flag emoji is composed of two codepoints
+
+The current implementation of the Emoji.scala implies that an Emoji object
+corresponds to exactly 1 codepoint.
+
+This makes it impossible to construct a single Emoji object for the US flag.
+
+  "Country flags" should {
+    "US flag" in {
+      // https://emojipedia.org/flag-for-united-states/
+      val regionalIndicator_u = Emoji(0x1F1FA)
+      val regionalIndicator_s = Emoji(0x1F1F8)
+      val usFlag = regionalIndicator_u.toString + regionalIndicator_s.toString
+      Character.codePointCount(usFlag, 0, usFlag.length - 1) shouldBe 2
+      System.out.println("US flag: " + usFlag)
+    }
+  } */
+
 }

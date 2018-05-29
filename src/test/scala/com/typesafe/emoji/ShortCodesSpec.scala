@@ -59,6 +59,12 @@ class ShortCodesSpec extends WordSpec {
       maybeEmoji should be(Some(Emoji(0x1f449)))
     }
 
+    "find US Flag emoji given a short code" in {
+      import ShortCodes.Defaults._
+
+      val e = ShortCodes.current.emoji("us").get
+      e.toString should be ("\uD83C\uDDFA\uD83C\uDDF8")
+    }
     "find short codes given an emoji" in {
       import ShortCodes.Defaults._
 

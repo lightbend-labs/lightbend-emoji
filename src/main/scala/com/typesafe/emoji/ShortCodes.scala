@@ -975,6 +975,7 @@ object ShortCodes {
       entry(Emoji(0x1f51e), ("underage"))
       entry(Emoji(0x1f513), ("unlock"))
       entry(Emoji(0x1f199), ("up"))
+      entry(Emoji("\uD83C\uDDFA\uD83C\uDDF8"),  ("us"))
       entry(Emoji(0x0270c), ("v"))
       entry(Emoji(0x1f6a6), ("vertical_traffic_light"))
       entry(Emoji(0x1f4fc), ("vhs"))
