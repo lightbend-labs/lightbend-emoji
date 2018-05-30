@@ -30,6 +30,46 @@ class EmojiSpec extends WordSpec {
       ramen.name should be ("STEAMING BOWL")
     }
   }
+
+  "equals" should {
+    "return true" in {
+      val codePoint = 128515
+      val e1 = Emoji(codePoint)
+      val e2 = Emoji(codePoint)
+      e1.equals(e1) shouldBe (true)
+      e1.equals(e2) shouldBe (true)
+      e2.equals(e1) shouldBe (true)
+    }
+
+    "return false" in {
+      val e = Emoji(codePoint = 128515)
+      Emoji(e.codePoint + 1).equals(e) shouldBe (false)
+      Emoji(e.codePoint - 1).equals(e) shouldBe (false)
+    }
+  }
+
+  "hashCode" should {
+    "hash correctly" in {
+      val e = Emoji(codePoint = 128515)
+      e.hashCode shouldBe (e.hashCode)
+      Emoji(e.codePoint).hashCode shouldBe (e.hashCode)
+      Emoji(e.codePoint + 1).hashCode should not be (e.hashCode)
+      Emoji(e.codePoint - 1).hashCode should not be (e.hashCode)
+    }
+  }
+
+  "smiling face with open mouth" should {
+    "pass sanity check \uD83D\uDE03" in {
+      val e = Emoji(codePoint = 128515)
+      e.name should be("SMILING FACE WITH OPEN MOUTH")
+      e.codePoint should be(128515)
+      e.toString should be("\uD83D\uDE03")
+      Emoji(e.toString).toString shouldBe (e.toString)
+      Emoji(e.chars).toString shouldBe (e.toString)
+      Emoji(e.codePoint).toString shouldBe (e.toString)
+    }
+  }
+
   "implicits" should {
 
     "map hexcode correctly" in {
