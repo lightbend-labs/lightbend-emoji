@@ -30,7 +30,7 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   def entry(emoji: Emoji, shortCode: String): Unit = {
     emojiToShortCodes.get(emoji) match {
       case Some(shortCodes) =>
-        emojiToShortCodes += (emoji -> (shortCodes + shortCode))
+        emojiToShortCodes += (emoji -> (shortCodes ++ Set(shortCode)))
       case None =>
         emojiToShortCodes += (emoji -> Set(shortCode))
     }
@@ -84,7 +84,7 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   def removeCode(shortCode: String): Unit = {
     shortCodeToEmoji.remove(shortCode).foreach { emoji =>
       emojiToShortCodes.get(emoji).map { codes =>
-        val set = codes - shortCode
+        val set = codes diff Set(shortCode)
         if (set.isEmpty) {
           emojiToShortCodes.remove(emoji)
         } else {
