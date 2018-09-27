@@ -20,14 +20,14 @@ class EmojiSpec extends WordSpec {
   "toString" should {
     "return correct value" in {
       val ramen = Emoji(0x1f35c)
-      ramen.toString should be ("\ud83c\udf5c")
+      ramen.toString should be("\ud83c\udf5c")
     }
   }
 
   "name" should {
     "return correct value" in {
       val ramen = Emoji(0x1f35c)
-      ramen.name should be ("STEAMING BOWL")
+      ramen.name should be("STEAMING BOWL")
     }
   }
 

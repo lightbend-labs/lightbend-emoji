@@ -44,7 +44,6 @@ class ShortCodesSpec extends WordSpec {
       }
     }
 
-
     "pick up the current shortCode mapping" in {
       import ShortCodes.Defaults._
 
