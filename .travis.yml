@@ -9,6 +9,7 @@ jdk: oraclejdk8
 language: scala
 script:
   - sbt +test +package
+  - git diff --exit-code # check scalariform
 before_cache:
   - find $HOME/.sbt -name "*.lock" | xargs rm
   - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
