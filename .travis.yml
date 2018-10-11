@@ -9,8 +9,12 @@ jdk:
   - oraclejdk8
   - openjdk11
 language: scala
+scala:
+  - 2.11.12
+  - 2.12.7
+  - 2.13.0-M5
 script:
-  - sbt +test +package
+  - sbt ++$TRAVIS_SCALA_VERSION test package
   - git diff --exit-code # check scalariform
 before_cache:
   - find $HOME/.sbt -name "*.lock" | xargs rm
