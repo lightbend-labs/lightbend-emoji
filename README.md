@@ -2,14 +2,6 @@
 
 Lightbend Emoji is a wrapper around Java's Unicode Character handling.
 
-## Examples
-
-For an example of Lightbend Emoji in an Enterprise Mission Critical Environment, please see [Typesafe Emojr](https://github.com/typesafehub/typesafe-emojr).
-
-Note that Typesafe Emojr has not been Lightbend-rebranded or ported
-to Scala 2.12. To register your interest in an updated version, please
-contact Lightbend's enterprise sales team.
-
 ## Installation
 
 Add to build.sbt
@@ -17,7 +9,7 @@ Add to build.sbt
 ```
 resolvers += Resolver.typesafeIvyRepo("releases")
 
-libraryDependencies += "com.lightbend" %% "emoji" % "1.2.0"
+libraryDependencies += "com.lightbend" %% "emoji" % "1.2.1"
 ```
 
 ## Usage
@@ -109,3 +101,11 @@ These libraries have not been evaluated, and they may work or not:
 ## Bugs
 
 Sadly, there is no direct mapping to [emoji-cheat-sheet](http://www.emoji-cheat-sheet.com/) or [emoji searcher](http://emoji.muan.co/), because some emoji are mapped directly to glyphs, without [Unicode involvement](http://apps.timwhitlock.info/emoji/tables/unicode), e.g. [:neckbeard:](https://signalvnoise.com/posts/3395-neckbeard).
+
+## Typesafe Emojr
+
+For an example of Lightbend Emoji in an Enterprise Mission Critical Environment, please see [Typesafe Emojr](https://github.com/typesafehub/typesafe-emojr).
+
+Note that Typesafe Emojr has not been Lightbend-rebranded or ported
+to Scala 2.12+. To register your interest in an updated version, please
+contact Lightbend's enterprise sales team.
