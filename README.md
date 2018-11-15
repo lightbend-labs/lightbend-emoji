@@ -1,5 +1,9 @@
 # Lightbend Emoji
 
+[![Build Status](https://travis-ci.org/lightbend/lightbend-emoji.svg?branch=master)](https://travis-ci.org/lightbend/lightbend-emoji)
+![Current Version](https://img.shields.io/badge/version-1.2.1-brightgreen.svg?style=flat "1.2.1")
+[![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat "Apache 2.0")](LICENSE)
+
 Lightbend Emoji is a wrapper around Java's Unicode Character handling.
 
 ## Installation
