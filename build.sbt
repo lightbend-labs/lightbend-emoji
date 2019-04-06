@@ -4,7 +4,7 @@ organization := "com.lightbend"
 
 version := "1.2.2-SNAPSHOT"
 
-crossScalaVersions := Seq("2.12.7", "2.11.12", "2.13.0-M5")
+crossScalaVersions := Seq("2.12.7", "2.11.12", "2.13.0-RC1")
 scalaVersion := crossScalaVersions.value.head
 
 bintrayOrganization := Some("typesafe")
