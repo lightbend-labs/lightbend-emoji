@@ -4,7 +4,7 @@ organization := "com.lightbend"
 
 version := "1.2.2-SNAPSHOT"
 
-crossScalaVersions := Seq("2.12.7", "2.11.12", "2.13.0-RC1")
+crossScalaVersions := Seq("2.12.8", "2.11.12", "2.13.0-RC2")
 scalaVersion := crossScalaVersions.value.head
 
 bintrayOrganization := Some("typesafe")
@@ -24,7 +24,7 @@ scalacOptions in (Compile, console) ~= (_ filterNot Set(
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.0.8-RC3" % Test
+  "org.scalatest" %% "scalatest" % "3.0.8-RC4" % Test
 )
 
 initialCommands in console := {
