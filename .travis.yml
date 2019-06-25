@@ -6,7 +6,7 @@ cache:
   - $HOME/.sbt/launchers
   - $HOME/.coursier
 jdk:
-  - oraclejdk8
+  - openjdk8
   - openjdk11
 language: scala
 scala:
