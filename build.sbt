@@ -7,6 +7,9 @@ version := "1.2.2-SNAPSHOT"
 crossScalaVersions := Seq("2.12.8", "2.11.12", "2.13.0")
 scalaVersion := crossScalaVersions.value.head
 
+resolvers += Resolver.typesafeIvyRepo("releases")
+mimaPreviousArtifacts := Set(organization.value %% name.value % "1.2.1")
+
 bintrayOrganization := Some("typesafe")
 bintrayRepository := "ivy-releases"
 bintrayPackage := "emoji"

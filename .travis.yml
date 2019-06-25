@@ -14,7 +14,7 @@ scala:
   - 2.12.8
   - 2.13.0
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test package
+  - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package
   - git diff --exit-code # check scalariform
 before_cache:
   - find $HOME/.sbt -name "*.lock" | xargs rm
