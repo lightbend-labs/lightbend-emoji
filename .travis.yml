@@ -1,20 +1,22 @@
-sudo: false
+language: scala
+jdk:
+  - openjdk8
+  - openjdk11
+scala:
+  - 2.12.10
+  - 2.13.0
+
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package
+  - git diff --exit-code # check scalariform
+
 cache:
   directories:
   - $HOME/.ivy2
   - $HOME/.sbt/boot
   - $HOME/.sbt/launchers
   - $HOME/.coursier
-jdk:
-  - openjdk8
-  - openjdk11
-language: scala
-scala:
-  - 2.12.9
-  - 2.13.0
-script:
-  - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package
-  - git diff --exit-code # check scalariform
 before_cache:
   - find $HOME/.sbt -name "*.lock" | xargs rm
+  - find $HOME/.coursier -name "*.lock" | xargs rm
   - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
