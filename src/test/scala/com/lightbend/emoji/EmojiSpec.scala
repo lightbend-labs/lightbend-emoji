@@ -3,9 +3,7 @@
  */
 package com.lightbend.emoji
 
-import org.scalatest._
-import matchers.should.Matchers._
-import org.scalatest.matchers
+import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
 class EmojiSpec extends AnyWordSpec {
