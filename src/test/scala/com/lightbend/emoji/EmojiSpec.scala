@@ -4,9 +4,11 @@
 package com.lightbend.emoji
 
 import org.scalatest._
-import org.scalatest.Matchers._
+import matchers.should.Matchers._
+import org.scalatest.matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class EmojiSpec extends WordSpec {
+class EmojiSpec extends AnyWordSpec {
 
   "hex" should {
 
