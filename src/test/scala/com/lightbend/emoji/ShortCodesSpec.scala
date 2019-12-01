@@ -3,12 +3,12 @@
  */
 package com.lightbend.emoji
 
-import org.scalatest.Matchers._
-import org.scalatest._
+import org.scalatest.matchers.should.Matchers._
+import org.scalatest.wordspec.AnyWordSpec
 
 import ShortCodes.Implicits._
 
-class ShortCodesSpec extends WordSpec {
+class ShortCodesSpec extends AnyWordSpec {
 
   "ShortCodes.Implicits" should {
 
