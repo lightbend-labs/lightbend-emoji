@@ -4,9 +4,6 @@ organization := "com.lightbend"
 
 version := "1.2.2-SNAPSHOT"
 
-crossScalaVersions := Seq("2.12.10", "2.13.1")
-scalaVersion := crossScalaVersions.value.head
-
 resolvers += Resolver.typesafeIvyRepo("releases")
 mimaPreviousArtifacts := Set(organization.value %% name.value % "1.2.1")
 
