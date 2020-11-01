@@ -3,6 +3,8 @@
  */
 package com.lightbend.emoji
 
+import scala.language.implicitConversions
+
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -12,7 +14,7 @@ class EmojiSpec extends AnyWordSpec {
 
     "map correctly" in {
       val ramen = Emoji(0x1f35c)
-      ramen.hex should be("0x1f35c")
+      ramen.hex shouldBe "0x1f35c"
     }
 
   }
@@ -20,14 +22,14 @@ class EmojiSpec extends AnyWordSpec {
   "toString" should {
     "return correct value" in {
       val ramen = Emoji(0x1f35c)
-      ramen.toString should be("\ud83c\udf5c")
+      ramen.toString shouldBe "\ud83c\udf5c"
     }
   }
 
   "name" should {
     "return correct value" in {
       val ramen = Emoji(0x1f35c)
-      ramen.name should be("STEAMING BOWL")
+      ramen.name shouldBe "STEAMING BOWL"
     }
   }
 
@@ -61,9 +63,9 @@ class EmojiSpec extends AnyWordSpec {
   "smiling face with open mouth" should {
     "pass sanity check \uD83D\uDE03" in {
       val e = Emoji(codePoint = 128515)
-      e.name should be("SMILING FACE WITH OPEN MOUTH")
-      e.codePoint should be(128515)
-      e.toString should be("\uD83D\uDE03")
+      e.name shouldBe "SMILING FACE WITH OPEN MOUTH"
+      e.codePoint shouldBe 128515
+      e.toString shouldBe "\uD83D\uDE03"
       Emoji(e.toString).toString shouldBe (e.toString)
       Emoji(e.chars).toString shouldBe (e.toString)
       Emoji(e.codePoint).toString shouldBe (e.toString)
@@ -76,21 +78,21 @@ class EmojiSpec extends AnyWordSpec {
       import Emoji.Implicits._
 
       val ramen = Emoji(0x1f35c)
-      "1f35c".codePointEmoji should be(ramen)
+      "1f35c".codePointEmoji shouldBe ramen
     }
 
     "map hexcode correctly using a leading 0x" in {
       import Emoji.Implicits._
 
       val ramen = Emoji(0x1f35c)
-      "0x1f35c".codePointEmoji should be(ramen)
+      "0x1f35c".codePointEmoji shouldBe ramen
     }
 
     "map raw integers correctly" in {
       import Emoji.Implicits._
 
       val ramen = Emoji(0x1f35c)
-      0x1f35c.emoji should be(ramen)
+      0x1f35c.emoji shouldBe ramen
     }
   }
 

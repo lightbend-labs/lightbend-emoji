@@ -3,6 +3,8 @@
  */
 package com.lightbend.emoji
 
+import scala.language.implicitConversions
+
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -16,14 +18,14 @@ class ShortCodesSpec extends AnyWordSpec {
       import ShortCodes.Defaults._
 
       val pointRightEmoji = Emoji(0x1f449)
-      pointRightEmoji.shortCodes should be(Some(Set("point_right")))
+      pointRightEmoji.shortCodes shouldBe Some(Set("point_right"))
     }
 
     "map shortcode to emoji using the implicit class" in {
       import ShortCodes.Defaults._
 
       val pointRightEmoji = new String(Character.toChars(0x1f449))
-      "point_right".emoji.toString should be(s"$pointRightEmoji")
+      "point_right".emoji.toString shouldBe s"$pointRightEmoji"
     }
 
   }
@@ -34,8 +36,8 @@ class ShortCodesSpec extends AnyWordSpec {
       import ShortCodes.Defaults._
 
       val current = ShortCodes.current
-      current.shortCodes.size should be > 0
-      current.emojis.size should be > 0
+      current.shortCodes.nonEmpty shouldBe true
+      current.emojis.nonEmpty shouldBe true
       current.shortCodes.foreach { shortCode =>
         current.emoji(shortCode) match {
           case Some(emoji) => Emoji.isEmoji(emoji.codePoint) shouldBe true
@@ -48,21 +50,21 @@ class ShortCodesSpec extends AnyWordSpec {
       import ShortCodes.Defaults._
 
       val shortCodes = ShortCodes.current
-      shortCodes should be(ShortCodes.Defaults.defaultImplicit)
+      shortCodes shouldBe ShortCodes.Defaults.defaultImplicit
     }
 
     "find emoji given a short code" in {
       import ShortCodes.Defaults._
 
       val maybeEmoji = ShortCodes.current.emoji("point_right")
-      maybeEmoji should be(Some(Emoji(0x1f449)))
+      maybeEmoji shouldBe Some(Emoji(0x1f449))
     }
 
     "find short codes given an emoji" in {
       import ShortCodes.Defaults._
 
       val maybeShortCodes = ShortCodes.current.shortCodes(Emoji(0x1f449))
-      maybeShortCodes should be(Some(Set("point_right")))
+      maybeShortCodes shouldBe Some(Set("point_right"))
     }
 
     "define a new custom shortcode mapping" in {
@@ -72,7 +74,7 @@ class ShortCodesSpec extends AnyWordSpec {
       newShortCodes.entry(stuckOutTongue, "silly")
 
       val silly = ShortCodes.current.emoji("silly").get
-      stuckOutTongue should be(silly)
+      stuckOutTongue shouldBe silly
     }
 
   }
@@ -85,7 +87,7 @@ class ShortCodesSpec extends AnyWordSpec {
       val eye = "I"
       val heart = "heart".emoji
 
-      e"$eye :heart: Scala" should be(s"I $heart Scala")
+      e"$eye :heart: Scala" shouldBe s"I $heart Scala"
     }
 
     "ignore short names in interpolated args" in {
@@ -94,7 +96,7 @@ class ShortCodesSpec extends AnyWordSpec {
       val eye = "I"
       val heart = ":heart:"
 
-      e"$eye $heart Scala" should be(s"I :heart: Scala")
+      e"$eye $heart Scala" shouldBe s"I :heart: Scala"
     }
 
     "accept double colon as double colon" in {
@@ -102,7 +104,7 @@ class ShortCodesSpec extends AnyWordSpec {
 
       val heart = "heart".emoji
 
-      e"List of fave emojis = :heart: :: Nil" should be(s"List of fave emojis = $heart :: Nil")
+      e"List of fave emojis = :heart: :: Nil" shouldBe s"List of fave emojis = $heart :: Nil"
     }
 
     "accept colon not followed by emoji char as literal colon" in {
@@ -110,7 +112,7 @@ class ShortCodesSpec extends AnyWordSpec {
 
       val smiley = "smiley".emoji
 
-      e"Dear Customer: Have a nice day! :) :smiley:" should be(s"Dear Customer: Have a nice day! :) $smiley")
+      e"Dear Customer: Have a nice day! :) :smiley:" shouldBe s"Dear Customer: Have a nice day! :) $smiley"
     }
 
     "also accept backslash-escaped colon as literal colon" in {
@@ -119,9 +121,9 @@ class ShortCodesSpec extends AnyWordSpec {
       val eye = "I"
       val heart = "heart".emoji
 
-      e"$eye :heart:\: Scala" should be(s"I $heart: Scala")
-      e"$eye \:heart:\: Scala" should be(s"I :heart:: Scala")
-      e"$eye \::heart:\: Scala" should be(s"I :$heart: Scala")
+      e"$eye :heart:\: Scala" shouldBe s"I $heart: Scala"
+      e"$eye \:heart:\: Scala" shouldBe s"I :heart:: Scala"
+      e"$eye \::heart:\: Scala" shouldBe s"I :$heart: Scala"
     }
 
     "not go kaput on bad short name" in {
@@ -129,7 +131,7 @@ class ShortCodesSpec extends AnyWordSpec {
 
       val upper = "+1".emoji
 
-      e":+1: Loved it! So much! :++1:" should be(s"$upper Loved it! So much! :++1:")
+      e":+1: Loved it! So much! :++1:" shouldBe s"$upper Loved it! So much! :++1:"
     }
 
     "gently ignore bad characters" in {
@@ -137,8 +139,8 @@ class ShortCodesSpec extends AnyWordSpec {
 
       val upper = "+1".emoji
 
-      e":+1: Love the idea of using :left arrow: in for comprehensions!" should be(
-        s"$upper Love the idea of using :left arrow: in for comprehensions!")
+      e":+1: Love the idea of using :left arrow: in for comprehensions!" shouldBe
+        s"$upper Love the idea of using :left arrow: in for comprehensions!"
     }
   }
 
