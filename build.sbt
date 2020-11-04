@@ -5,7 +5,12 @@ organization := "com.lightbend"
 version := "1.2.2-SNAPSHOT"
 
 resolvers += Resolver.typesafeIvyRepo("releases")
-mimaPreviousArtifacts := Set(organization.value %% name.value % "1.2.1")
+mimaPreviousArtifacts := {
+  if (isDotty.value)
+    Set.empty
+  else
+    Set(organization.value %% name.value % "1.2.1")
+}
 
 bintrayOrganization := Some("typesafe")
 bintrayRepository := "ivy-releases"
@@ -14,10 +19,19 @@ bintrayReleaseOnPublish := false
 
 publishMavenStyle := false
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings", "-Xlint")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ {
+  if (isDotty.value)
+    Seq.empty
+  else
+    Seq("-Xlint")
+}
 
 scalacOptions in (Compile, console) ~= (_ filterNot Set(
   "-Xlint",
+  "-Xfatal-warnings"
+))
+
+scalacOptions in (Test) ~= (_ filterNot Set(
   "-Xfatal-warnings"
 ))
 
@@ -25,6 +39,7 @@ unmanagedSourceDirectories in Compile += {
   val sourceDir = (sourceDirectory in Compile).value
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, n)) if n >= 13 => sourceDir / "scala-2.13+"
+    case Some((0 | 3, _))        => sourceDir / "scala-2.13+"
     case _                       => sourceDir / "scala-2.13-"
   }
 }
