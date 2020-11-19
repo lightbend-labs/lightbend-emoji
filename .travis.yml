@@ -1,23 +1,15 @@
+version: ~> 1.0
+import: scala/scala-dev:travis/default.yml
+
 language: scala
-jdk:
-  - openjdk8
-  - openjdk11
+env:
+  - ADOPTOPENJDK=8
+  - ADOPTOPENJDK=11
 scala:
+  - 3.0.0-M1
   - 2.12.12
-  - 0.27.0-RC1
   - 2.13.3
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package
   - git diff --exit-code # check scalariform
-
-cache:
-  directories:
-  - $HOME/.ivy2
-  - $HOME/.sbt/boot
-  - $HOME/.sbt/launchers
-  - $HOME/.coursier
-before_cache:
-  - find $HOME/.sbt -name "*.lock" | xargs rm
-  - find $HOME/.coursier -name "*.lock" | xargs rm
-  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
