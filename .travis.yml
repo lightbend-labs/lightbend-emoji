@@ -6,9 +6,9 @@ env:
   - ADOPTOPENJDK=8
   - ADOPTOPENJDK=11
 scala:
-  - 3.0.0-M2
-  - 2.12.12
-  - 2.13.4
+  - 3.0.0-RC2
+  - 2.12.13
+  - 2.13.5
 
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package

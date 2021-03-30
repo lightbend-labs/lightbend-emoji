@@ -47,8 +47,8 @@ Compile / unmanagedSourceDirectories += {
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest-wordspec" % "3.2.3" % Test,
-  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.3" % Test
+  "org.scalatest" %% "scalatest-wordspec" % "3.2.7" % Test,
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.7" % Test
 )
 
 console / initialCommands := {
