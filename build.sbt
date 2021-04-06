@@ -5,12 +5,11 @@ organization := "com.lightbend"
 version := "1.2.2-SNAPSHOT"
 
 resolvers += Resolver.typesafeIvyRepo("releases")
-mimaPreviousArtifacts := {
-  if (isDotty.value)
-    Set.empty
-  else
-    Set(organization.value %% name.value % "1.2.1")
-}
+mimaPreviousArtifacts := (CrossVersion.partialVersion(scalaVersion.value) match {
+  // we haven't published for Scala 3 yet
+  case Some((2, _)) => Set(organization.value %% name.value % "1.2.1")
+  case _            => Set()
+})
 
 bintrayOrganization := Some("typesafe")
 bintrayRepository := "ivy-releases"
@@ -19,12 +18,12 @@ bintrayReleaseOnPublish := false
 
 publishMavenStyle := false
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ {
-  if (isDotty.value)
-    Seq.empty
-  else
-    Seq("-Xlint")
-}
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
+  CrossVersion.partialVersion(scalaVersion.value) match {
+    case Some((2, _)) => Seq("-Xlint")
+    case _ => Seq.empty
+  })
+
 
 Compile / console / scalacOptions ~= (_ filterNot Set(
   "-Xlint",
