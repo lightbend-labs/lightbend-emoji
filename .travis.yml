@@ -10,6 +10,22 @@ scala:
   - 2.12.13
   - 2.13.5
 
+before_install:
+  - git fetch --tags
+
 script:
   - sbt ++$TRAVIS_SCALA_VERSION test mimaReportBinaryIssues package
   - git diff --exit-code # check scalariform
+
+stages:
+  - name: release
+    if: (tag IS present) AND NOT fork AND env(ADOPTOPENJDK) = 8
+
+jobs:
+  include:
+    - stage: release
+      script: sbt ci-release
+
+notifications:
+  email:
+  - seth.tisue@lightbend.com
