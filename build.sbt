@@ -7,6 +7,13 @@ licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html
 scmInfo := Some(ScmInfo(
   url("https://github.com/lightbend/scala-logging"),
   "scm:git:git@github.com:lightbend/scala-logging.git"))
+developers := List(
+  Developer(
+    id = "Lightbend",
+    name = "Lightbend, Inc.",
+    email = "",
+    url = url("https://www.lightbend.com")))
+
 ThisBuild / dynverVTagPrefix := false
 
 /// build
