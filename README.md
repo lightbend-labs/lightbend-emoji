@@ -1,19 +1,18 @@
 # Lightbend Emoji
 
-[![Build Status](https://travis-ci.org/lightbend/lightbend-emoji.svg?branch=master)](https://travis-ci.org/lightbend/lightbend-emoji)
+[![Build Status](https://travis-ci.com/lightbend/lightbend-emoji.svg?branch=master)](https://travis-ci.com/lightbend/lightbend-emoji)
 ![Current Version](https://img.shields.io/badge/version-1.2.1-brightgreen.svg?style=flat "1.2.1")
-[![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat "Apache 2.0")](LICENSE)
 
-Lightbend Emoji is a wrapper around Java's Unicode Character handling.
+Lightbend Emoji is a wrapper around Java's Unicode handling.
 
 ## Installation
 
-Add to build.sbt
+Supported Scala versions: 2.12, 2.13, 3.0.0-RC2
+
+Add to `build.sbt`:
 
 ```
-resolvers += Resolver.typesafeIvyRepo("releases")
-
-libraryDependencies += "com.lightbend" %% "emoji" % "1.2.1"
+libraryDependencies += "com.lightbend" %% "emoji" % "1.2.2"
 ```
 
 ## Usage
@@ -31,7 +30,7 @@ scala> Emoji(0x1f603)
 res0: com.lightbend.emoji.Emoji = 😃
 ```
 
-Or you can map the implicit from Int or String:
+Or you can map the implicit from `Int` or `String`:
 
 ```
 scala> 0x1f603.emoji
@@ -40,7 +39,7 @@ scala> "0x1f603".codePointEmoji
 res2: com.lightbend.emoji.Emoji = 😃
 ```
 
-Once you have an emoji, you can ask it for codePoint (Int) or hexadecimal value:
+Once you have an emoji, you can ask it for `codePoint` (`Int`) or hexadecimal value:
 
 ```
 scala> res2.hex
@@ -49,7 +48,7 @@ scala> res2.codePoint
 res4: Int = 128515
 ```
 
-Unicode codepoints are not very convenient, so there's a ShortCodes class which is designed to be used as an implicit parameter for emoji mapping.
+Unicode codepoints are not very convenient, so there's a `ShortCodes` class which is designed to be used as an implicit parameter for emoji mapping.
 
 There is a default mapping available, which allows you to map from a string directly to an emoji:
 
@@ -60,7 +59,7 @@ scala> "smiley".emoji
 res5: com.lightbend.emoji.Emoji = 😃
 ```
 
-ShortCodes are not very convenient, so there's an emoji interpolator for constructing strings using familiar syntax:
+Short codes are not very convenient, so there's an emoji interpolator for constructing strings using familiar syntax:
 
 ```
 scala> e"Have a nice day! :smiley:"
