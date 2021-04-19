@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: adopt
-          java-version: ${{matrix.java}}
+          java-version: 8
       - uses: olafurpg/setup-gpg@v3
       - run: sbt ci-release
         env:
