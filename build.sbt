@@ -15,6 +15,7 @@ developers := List(
     url = url("https://www.lightbend.com")))
 
 ThisBuild / dynverVTagPrefix := false
+ThisBuild / versionScheme := Some("early-semver")
 
 /// build
 
