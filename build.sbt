@@ -18,6 +18,9 @@ ThisBuild / dynverVTagPrefix := false
 
 /// build
 
+crossScalaVersions := Seq("2.13.5", "2.12.13", "3.0.0-RC2")
+scalaVersion := crossScalaVersions.value.head
+
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-wordspec"       % "3.2.7" % Test,
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.7" % Test,
