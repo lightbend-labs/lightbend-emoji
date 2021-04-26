@@ -5,8 +5,8 @@ organization := "com.lightbend"
 homepage := Some(url("https://github.com/lightbend/lightbend-emoji"))
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 scmInfo := Some(ScmInfo(
-  url("https://github.com/lightbend/scala-logging"),
-  "scm:git:git@github.com:lightbend/scala-logging.git"))
+  url("https://github.com/lightbend/lightbend-emoji"),
+  "scm:git:git@github.com:lightbend/lightbend-emoji.git"))
 developers := List(
   Developer(
     id = "Lightbend",
