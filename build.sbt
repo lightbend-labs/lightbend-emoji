@@ -19,18 +19,13 @@ ThisBuild / versionScheme := Some("early-semver")
 
 /// build
 
-crossScalaVersions := Seq("2.13.6", "2.12.14", "3.0.0-RC2", "3.0.0-RC3")
+crossScalaVersions := Seq("2.13.6", "2.12.14", "3.0.1")
 scalaVersion := crossScalaVersions.value.head
 
-libraryDependencies ++= {
-  val scalaTestVersion =
-    if (scalaVersion.value == "3.0.0-RC2") "3.2.7"
-    else "3.2.8"
-  Seq(
-    "org.scalatest" %% "scalatest-wordspec"       % scalaTestVersion % Test,
-    "org.scalatest" %% "scalatest-shouldmatchers" % scalaTestVersion % Test,
-  )
-}
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest-wordspec"       % "3.2.9" % Test,
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.9" % Test,
+)
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
   CrossVersion.partialVersion(scalaVersion.value) match {
