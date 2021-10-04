@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [8, 11]
+        java: [8, 11, 17]
         scala: [2.12.15, 2.13.6, 3.0.2]
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,7 @@ jobs:
     - uses: coursier/cache-action@v6
     - uses: actions/setup-java@v2
       with:
-        distribution: adopt
+        distribution: temurin
         java-version: ${{matrix.java}}
     - name: Test
       run: sbt ++${{matrix.scala}} test mimaReportBinaryIssues package
