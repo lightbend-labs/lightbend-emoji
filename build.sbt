@@ -23,14 +23,14 @@ crossScalaVersions := Seq("2.13.7", "2.12.15", "3.0.2")
 scalaVersion := crossScalaVersions.value.head
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest-wordspec"       % "3.2.10" % Test,
+  "org.scalatest" %% "scalatest-wordspec" % "3.2.10" % Test,
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.10" % Test,
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, _)) => Seq("-Xlint")
-    case _ => Seq.empty
+    case _            => Seq.empty
   })
 
 Compile / console / scalacOptions ~= (_ filterNot Set(

@@ -6,12 +6,11 @@ package com.lightbend.emoji
 import ScalaVersionSpecific.checkLengths
 
 /**
- * An emoji to shortcode mapping.  This is a class that should be declared and used
- * as an implicit value, so that shortcode mappings don't have to be global across
- * an application.
+ * An emoji to shortcode mapping. This is a class that should be declared and used as an implicit
+ * value, so that shortcode mappings don't have to be global across an application.
  *
- * "import ShortCodes.Defaults._" to import the default shortcode mapping.
- * "import ShortCodes.Implicits._" to enrich Emoji and String with shortcode methods.
+ * "import ShortCodes.Defaults._" to import the default shortcode mapping. "import
+ * ShortCodes.Implicits._" to enrich Emoji and String with shortcode methods.
  */
 class ShortCodes(template: Option[ShortCodes] = None) {
 
@@ -26,8 +25,8 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   }
 
   /**
-   * Defines a mapping between an emoji and a short code.  Emojis may have multiple
-   * short code mappings.
+   * Defines a mapping between an emoji and a short code. Emojis may have multiple short code
+   * mappings.
    */
   def entry(emoji: Emoji, shortCode: String): Unit = {
     emojiToShortCodes.get(emoji) match {
@@ -69,8 +68,8 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   }
 
   /**
-   * Removes emoji from the shortcodes mapping.  This removes all the codes
-   * that map to the emoji as well.
+   * Removes emoji from the shortcodes mapping. This removes all the codes that map to the emoji as
+   * well.
    */
   def removeEmoji(emoji: Emoji): Unit = {
     emojiToShortCodes.remove(emoji).foreach { shortCodes =>
@@ -81,7 +80,7 @@ class ShortCodes(template: Option[ShortCodes] = None) {
   }
 
   /**
-   * Removes a shortcode from the mapping.  This does not remove the emoji.
+   * Removes a shortcode from the mapping. This does not remove the emoji.
    */
   def removeCode(shortCode: String): Unit = {
     shortCodeToEmoji.remove(shortCode).foreach { emoji =>
@@ -89,7 +88,8 @@ class ShortCodes(template: Option[ShortCodes] = None) {
         val set = codes diff Set(shortCode)
         if (set.isEmpty) {
           emojiToShortCodes.remove(emoji)
-        } else {
+        }
+        else {
           emojiToShortCodes.put(emoji, set)
         }
       }
@@ -143,16 +143,19 @@ object ShortCodes {
       import StringContext.InvalidEscapeException
 
       def e(args: Any*)(implicit shortCodes: ShortCodes): String = {
-        def emojify(s: String): String = colonSyntax.replaceAllIn(s, m =>
-          try m.group(1).emoji.toString
-          catch { case _: EmojiNotFound => m.matched })
+        def emojify(s: String): String = colonSyntax.replaceAllIn(
+          s,
+          m =>
+            try m.group(1).emoji.toString
+            catch { case _: EmojiNotFound => m.matched })
         checkLengths(sc, args)
         val sb = new java.lang.StringBuilder
         def process(part: String): String = emojify(StringContext.processEscapes(part))
         def partly(part: String): Unit = {
           try sb append process(part)
           catch {
-            case e: InvalidEscapeException if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
+            case e: InvalidEscapeException
+                if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
               sb append process(part.substring(0, e.index))
               sb append ":"
               partly(part.substring(e.index + 2))
