@@ -6,13 +6,16 @@ homepage := Some(url("https://github.com/lightbend/lightbend-emoji"))
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 scmInfo := Some(ScmInfo(
   url("https://github.com/lightbend/lightbend-emoji"),
-  "scm:git:git@github.com:lightbend/lightbend-emoji.git"))
+  "scm:git:git@github.com:lightbend/lightbend-emoji.git"
+))
 developers := List(
   Developer(
     id = "Lightbend",
     name = "Lightbend, Inc.",
     email = "",
-    url = url("https://www.lightbend.com")))
+    url = url("https://www.lightbend.com")
+  )
+)
 
 ThisBuild / dynverVTagPrefix := false
 ThisBuild / versionScheme := Some("early-semver")
@@ -31,7 +34,8 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, _)) => Seq("-Xlint")
     case _            => Seq.empty
-  })
+  }
+)
 
 Compile / console / scalacOptions ~= (_ filterNot Set(
   "-Xlint",

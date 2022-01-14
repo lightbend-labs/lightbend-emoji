@@ -88,8 +88,7 @@ class ShortCodes(template: Option[ShortCodes] = None) {
         val set = codes diff Set(shortCode)
         if (set.isEmpty) {
           emojiToShortCodes.remove(emoji)
-        }
-        else {
+        } else {
           emojiToShortCodes.put(emoji, set)
         }
       }
@@ -147,7 +146,8 @@ object ShortCodes {
           s,
           m =>
             try m.group(1).emoji.toString
-            catch { case _: EmojiNotFound => m.matched })
+            catch { case _: EmojiNotFound => m.matched }
+        )
         checkLengths(sc, args)
         val sb = new java.lang.StringBuilder
         def process(part: String): String = emojify(StringContext.processEscapes(part))

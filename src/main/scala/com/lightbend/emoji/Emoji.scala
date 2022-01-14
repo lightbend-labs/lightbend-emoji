@@ -105,8 +105,7 @@ object Emoji {
   def get(codePoint: Int): Option[Emoji] = {
     if (Emoji.isEmoji(codePoint)) {
       Some(new Emoji(codePoint))
-    }
-    else {
+    } else {
       None
     }
   }
