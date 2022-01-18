@@ -41,7 +41,7 @@ class ShortCodesSpec extends AnyWordSpec {
       current.shortCodes.foreach { shortCode =>
         current.emoji(shortCode) match {
           case Some(emoji) => Emoji.isEmoji(emoji.codePoint) shouldBe true
-          case None => fail(s"Unable to find Emoji for shortCode '${shortCode}")
+          case None        => fail(s"Unable to find Emoji for shortCode '${shortCode}")
         }
       }
     }

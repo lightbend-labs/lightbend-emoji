@@ -8,7 +8,8 @@ import scala.util.Try
 /**
  * The value class representing a codepoint in the Emoji set.
  *
- * @param codePoint the codepoint representing the Emoji character
+ * @param codePoint
+ *   the codepoint representing the Emoji character
  */
 class Emoji private (val codePoint: Int) extends AnyVal {
 
@@ -37,7 +38,7 @@ class Emoji private (val codePoint: Int) extends AnyVal {
   def hex: String = "0x" + toHexString
 
   /**
-   * Returns the emoji as a String.  Use this if you want smiley faces.
+   * Returns the emoji as a String. Use this if you want smiley faces.
    */
   override def toString = new String(chars)
 }
@@ -133,10 +134,13 @@ object Emoji {
   }
 
   /**
-   * Returns the unicode name for this codePoint.  Throws EmojiNotFound if this is not a valid codepoint.
+   * Returns the unicode name for this codePoint. Throws EmojiNotFound if this is not a valid
+   * codepoint.
    *
-   * @param codePoint the codePoint.
-   * @return the unicode description of the emoji.
+   * @param codePoint
+   *   the codePoint.
+   * @return
+   *   the unicode description of the emoji.
    */
   def name(codePoint: Int): String = {
     Option(Character.getName(codePoint)).getOrElse {
