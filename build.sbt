@@ -46,15 +46,6 @@ Test / scalacOptions ~= (_ filterNot Set(
   "-Xfatal-warnings"
 ))
 
-Compile / unmanagedSourceDirectories += {
-  val sourceDir = (Compile / sourceDirectory).value
-  CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, n)) if n >= 13 => sourceDir / "scala-2.13+"
-    case Some((3, _))            => sourceDir / "scala-2.13+"
-    case _                       => sourceDir / "scala-2.13-"
-  }
-}
-
 console / initialCommands := {
   """import com.lightbend.emoji._
     |import com.lightbend.emoji.Emoji.Implicits._
