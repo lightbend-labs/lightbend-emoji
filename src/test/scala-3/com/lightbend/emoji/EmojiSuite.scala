@@ -3,9 +3,9 @@
  */
 package com.lightbend.emoji
 
-import Emoji.Implicits.given
+import Emoji.*
 
-class EmojiSuite extends munit.FunSuite {
+class EmojiSuite extends munit.FunSuite:
 
   def assertFalse(b: Boolean) = assert(!b)
 
@@ -67,4 +67,3 @@ class EmojiSuite extends munit.FunSuite {
   test("map raw integers correctly") {
     assertEquals(0x1f35c.emoji, ramen)
   }
-}

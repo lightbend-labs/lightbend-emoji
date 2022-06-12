@@ -3,10 +3,9 @@
  */
 package com.lightbend.emoji
 
-import ShortCodes.Implicits.given
-import ShortCodes.Defaults.*
+import ShortCodes.{given, *}
 
-class ShortCodesSuite extends munit.FunSuite {
+class ShortCodesSuite extends munit.FunSuite:
 
   test("map emoji to shortcodes using the implicit class") {
     val pointRightEmoji = Emoji(0x1f449)
@@ -32,7 +31,7 @@ class ShortCodesSuite extends munit.FunSuite {
 
   test("pick up the current shortCode mapping") {
     val shortCodes = ShortCodes.current
-    assertEquals(shortCodes, ShortCodes.Defaults.defaultImplicit)
+    assertEquals(shortCodes, ShortCodes.given_ShortCodes)
   }
 
   test("find emoji given a short code") {
@@ -46,7 +45,7 @@ class ShortCodesSuite extends munit.FunSuite {
   }
 
   test("define a new custom shortcode mapping") {
-    implicit val newShortCodes = new ShortCodes(Some(ShortCodes.Defaults.defaultImplicit))
+    implicit val newShortCodes = new ShortCodes(Some(ShortCodes.given_ShortCodes))
 
     val stuckOutTongue = Emoji(0x1f61b) // aka "stuck_out_tongue"
     newShortCodes.entry(stuckOutTongue, "silly")
@@ -96,4 +95,3 @@ class ShortCodesSuite extends munit.FunSuite {
     assertEquals(e":+1: Love the idea of using :left arrow: in for comprehensions!",
       s"$upper Love the idea of using :left arrow: in for comprehensions!")
   }
-}

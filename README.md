@@ -94,6 +94,16 @@ scala> "yay".emoji
 res1: com.lightbend.emoji.Emoji = 😃
 ```
 
+## Scala 3
+
+Imports for extension methods are slightly shorter in Scala 3.
+
+The default `ShortCodes` is `given` in `ShortCodes`.
+```
+scala> import com.lightbend.emoji.Emoji.*
+scala> import com.lightbend.emoji.ShortCodes.{given, *}
+```
+
 ## Similar Works
 
 These libraries have not been evaluated, and they may work or not:
