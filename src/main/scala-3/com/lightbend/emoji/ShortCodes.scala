@@ -90,6 +90,9 @@ object ShortCodes:
    */
   def current(using shortCodes: ShortCodes): ShortCodes = shortCodes
 
+  extension (shortCodes: ShortCodes) def update(emoji: Emoji, shortCode: String): Unit =
+    shortCodes.entry(emoji, shortCode)
+
   /** Maps short codes onto Emoji and String, so you can say "+1".emoji and thumbsUpEmoji.shortCodes.
    */
   extension (shortCode: String) def emoji(using shortCodes: ShortCodes): Emoji =

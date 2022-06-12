@@ -45,10 +45,20 @@ class ShortCodesSuite extends munit.FunSuite:
   }
 
   test("define a new custom shortcode mapping") {
-    implicit val newShortCodes = new ShortCodes(Some(ShortCodes.given_ShortCodes))
+    given newShortCodes: ShortCodes = new ShortCodes(Some(ShortCodes.given_ShortCodes))
 
     val stuckOutTongue = Emoji(0x1f61b) // aka "stuck_out_tongue"
     newShortCodes.entry(stuckOutTongue, "silly")
+
+    val silly = ShortCodes.current.emoji("silly").get
+    assertEquals(stuckOutTongue, silly)
+  }
+
+  test("use assignment syntax for custom shortcode mapping") {
+    given newShortCodes: ShortCodes = new ShortCodes(Some(ShortCodes.given_ShortCodes))
+
+    val stuckOutTongue = Emoji(0x1f61b) // aka "stuck_out_tongue"
+    newShortCodes(stuckOutTongue) = "silly"
 
     val silly = ShortCodes.current.emoji("silly").get
     assertEquals(stuckOutTongue, silly)
