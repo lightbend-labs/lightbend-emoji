@@ -3,8 +3,6 @@
  */
 package com.lightbend.emoji
 
-import scala.language.implicitConversions
-
 import org.scalatest.matchers.should.Matchers._
 import org.scalatest.wordspec.AnyWordSpec
 

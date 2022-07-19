@@ -28,6 +28,7 @@ scalaVersion := crossScalaVersions.value.head
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-wordspec" % "3.2.12" % Test,
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.12" % Test,
+  "org.scalameta" %% "munit" % "1.0.0-M1" % Test,
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
@@ -45,15 +46,6 @@ Compile / console / scalacOptions ~= (_ filterNot Set(
 Test / scalacOptions ~= (_ filterNot Set(
   "-Xfatal-warnings"
 ))
-
-Compile / unmanagedSourceDirectories += {
-  val sourceDir = (Compile / sourceDirectory).value
-  CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, n)) if n >= 13 => sourceDir / "scala-2.13+"
-    case Some((3, _))            => sourceDir / "scala-2.13+"
-    case _                       => sourceDir / "scala-2.13-"
-  }
-}
 
 console / initialCommands := {
   """import com.lightbend.emoji._
