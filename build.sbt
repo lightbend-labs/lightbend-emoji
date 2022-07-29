@@ -56,11 +56,4 @@ console / initialCommands := {
 
 /// MiMa
 
-// 1.2.1 was published under com.typesafe, so we need a resolver
-// so MiMa can resolve it
-resolvers += Resolver.typesafeIvyRepo("releases")
-mimaPreviousArtifacts := (CrossVersion.partialVersion(scalaVersion.value) match {
-  // we haven't published for Scala 3 yet
-  case Some((2, _)) => Set(organization.value %% name.value % "1.2.1")
-  case _            => Set()
-})
+mimaPreviousArtifacts := Set(organization.value %% name.value % "1.3.0")
