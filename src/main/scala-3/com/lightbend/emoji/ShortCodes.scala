@@ -7,11 +7,12 @@ import scala.util.chaining.given
 
 import ScalaVersionSpecific.checkLengths
 
-/** An emoji to shortcode mapping. This is a class that should be declared and used as an implicit
- *  value, so that shortcode mappings don't have to be global across an application.
+/**
+ * An emoji to shortcode mapping. This is a class that should be declared and used as an implicit
+ * value, so that shortcode mappings don't have to be global across an application.
  *
- *  "import ShortCodes.Defaults.given" to import the default shortcode mapping. "import
- *  ShortCodes.Implicits.given" to enrich Emoji and String with shortcode methods.
+ * "import ShortCodes.Defaults.given" to import the default shortcode mapping. "import
+ * ShortCodes.Implicits.given" to enrich Emoji and String with shortcode methods.
  */
 class ShortCodes(template: Option[ShortCodes] = None):
 
@@ -25,7 +26,9 @@ class ShortCodes(template: Option[ShortCodes] = None):
     }
   }
 
-  /** Defines a mapping between an emoji and a short code. Emojis may have multiple short code mappings.
+  /**
+   * Defines a mapping between an emoji and a short code. Emojis may have multiple short code
+   * mappings.
    */
   def entry(emoji: Emoji, shortCode: String): Unit =
     emojiToShortCodes.get(emoji) match {
@@ -36,23 +39,29 @@ class ShortCodes(template: Option[ShortCodes] = None):
     }
     shortCodeToEmoji += (shortCode -> emoji)
 
-  /** Returns the short codes for this emoji.
+  /**
+   * Returns the short codes for this emoji.
    */
   def shortCodes(emoji: Emoji): Option[collection.Set[String]] = emojiToShortCodes.get(emoji)
 
-  /** Returns Some(emoji) if a short code is defined, None otherwise
+  /**
+   * Returns Some(emoji) if a short code is defined, None otherwise
    */
   def emoji(shortCode: String): Option[Emoji] = shortCodeToEmoji.get(shortCode)
 
-  /** Returns the set of emojis that have short codes.
+  /**
+   * Returns the set of emojis that have short codes.
    */
   def emojis: collection.Set[Emoji] = emojiToShortCodes.keySet
 
-  /** Returns the set of short codes mapped to emojis.
+  /**
+   * Returns the set of short codes mapped to emojis.
    */
   def shortCodes: collection.Set[String] = shortCodeToEmoji.keySet
 
-  /** Removes emoji from the shortcodes mapping. This removes all the codes that map to the emoji as well.
+  /**
+   * Removes emoji from the shortcodes mapping. This removes all the codes that map to the emoji as
+   * well.
    */
   def removeEmoji(emoji: Emoji): Unit =
     emojiToShortCodes.remove(emoji).foreach { shortCodes =>
@@ -61,7 +70,8 @@ class ShortCodes(template: Option[ShortCodes] = None):
       }
     }
 
-  /** Removes a shortcode from the mapping. This does not remove the emoji.
+  /**
+   * Removes a shortcode from the mapping. This does not remove the emoji.
    */
   def removeCode(shortCode: String): Unit =
     shortCodeToEmoji.remove(shortCode).foreach { emoji =>
@@ -75,65 +85,76 @@ class ShortCodes(template: Option[ShortCodes] = None):
       }
     }
 
-  /** Completely removes the emoji and shortcodes from the mapping.
+  /**
+   * Completely removes the emoji and shortcodes from the mapping.
    */
   def clear(): Unit =
     emojiToShortCodes.clear()
     shortCodeToEmoji.clear()
 end ShortCodes
 
-/** Companion object for shortcodes.
+/**
+ * Companion object for shortcodes.
  */
 object ShortCodes:
 
-  /** Returns the in-scope implicit shortcodes mapping.
+  /**
+   * Returns the in-scope implicit shortcodes mapping.
    */
   def current(using shortCodes: ShortCodes): ShortCodes = shortCodes
 
-  extension (shortCodes: ShortCodes) def update(emoji: Emoji, shortCode: String): Unit =
-    shortCodes.entry(emoji, shortCode)
+  extension (shortCodes: ShortCodes)
+    def update(emoji: Emoji, shortCode: String): Unit =
+      shortCodes.entry(emoji, shortCode)
 
-  /** Maps short codes onto Emoji and String, so you can say "+1".emoji and thumbsUpEmoji.shortCodes.
+  /**
+   * Maps short codes onto Emoji and String, so you can say "+1".emoji and thumbsUpEmoji.shortCodes.
    */
-  extension (shortCode: String) def emoji(using shortCodes: ShortCodes): Emoji =
-    shortCodes.emoji(shortCode).getOrElse { throw new EmojiNotFound("No emoji found for short code") }
+  extension (shortCode: String)
+    def emoji(using shortCodes: ShortCodes): Emoji =
+      shortCodes.emoji(shortCode).getOrElse {
+        throw new EmojiNotFound("No emoji found for short code")
+      }
 
-  extension (emoji: Emoji) def shortCodes(using shortCodes: ShortCodes): Option[collection.Set[String]] =
-    shortCodes.shortCodes(emoji)
+  extension (emoji: Emoji)
+    def shortCodes(using shortCodes: ShortCodes): Option[collection.Set[String]] =
+      shortCodes.shortCodes(emoji)
 
   private val colonSyntax = ":([a-zA-Z0-9_+-]+):".r
 
   import StringContext.InvalidEscapeException
 
   // Emojilator
-  extension (sc: StringContext) def e(args: Any*)(using shortCodes: ShortCodes): String =
-    def emojify(s: String): String = colonSyntax.replaceAllIn(
-      s,
-      m =>
-        try m.group(1).emoji.toString
-        catch case _: EmojiNotFound => m.matched
-    )
-    checkLengths(sc, args)
-    val sb = new java.lang.StringBuilder
-    def process(part: String): String = emojify(StringContext.processEscapes(part))
-    def partly(part: String): Unit =
-      try sb.append(process(part))
-      catch
-        case e: InvalidEscapeException
-        if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
-          sb.append(process(part.substring(0, e.index)))
-          sb.append(":")
-          partly(part.substring(e.index + 2))
-    val pi = sc.parts.iterator
-    val ai = args.iterator
-    partly(pi.next())
-    while ai.hasNext do
-      sb.append(ai.next())
+  extension (sc: StringContext)
+    def e(args: Any*)(using shortCodes: ShortCodes): String =
+      def emojify(s: String): String = colonSyntax.replaceAllIn(
+        s,
+        m =>
+          try m.group(1).emoji.toString
+          catch case _: EmojiNotFound => m.matched
+      )
+      checkLengths(sc, args)
+      val sb = new java.lang.StringBuilder
+      def process(part: String): String = emojify(StringContext.processEscapes(part))
+      def partly(part: String): Unit =
+        try sb.append(process(part))
+        catch
+          case e: InvalidEscapeException
+              if e.index < part.length - 1 && part.charAt(e.index + 1) == ':' =>
+            sb.append(process(part.substring(0, e.index)))
+            sb.append(":")
+            partly(part.substring(e.index + 2))
+      val pi = sc.parts.iterator
+      val ai = args.iterator
       partly(pi.next())
-    sb.toString
+      while ai.hasNext do
+        sb.append(ai.next())
+        partly(pi.next())
+      sb.toString
   end extension
 
-  /** The default shortcodes mapping, as used by emoji-cheat-sheet.
+  /**
+   * The default shortcodes mapping, as used by emoji-cheat-sheet.
    */
   given ShortCodes = ShortCodes().tap(defaults)
 
