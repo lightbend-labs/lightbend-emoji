@@ -9,7 +9,7 @@ class EmojiSuite extends munit.FunSuite:
 
   def assertFalse(b: Boolean) = assert(!b)
 
-  val ramen  = Emoji(0x1f35c)
+  val ramen = Emoji(0x1f35c)
   val smiley = Emoji(codePoint = 128515)
 
   test("hex maps correctly") {

@@ -84,7 +84,10 @@ class ShortCodesSuite extends munit.FunSuite:
 
   test("accept colon not followed by emoji char as literal colon") {
     val smiley = "smiley".emoji
-    assertEquals(e"Dear Customer: Have a nice day! :) :smiley:", s"Dear Customer: Have a nice day! :) $smiley")
+    assertEquals(
+      e"Dear Customer: Have a nice day! :) :smiley:",
+      s"Dear Customer: Have a nice day! :) $smiley"
+    )
   }
 
   test("also accept backslash-escaped colon as literal colon") {
@@ -102,6 +105,8 @@ class ShortCodesSuite extends munit.FunSuite:
 
   test("gently ignore bad characters") {
     val upper = "+1".emoji
-    assertEquals(e":+1: Love the idea of using :left arrow: in for comprehensions!",
-      s"$upper Love the idea of using :left arrow: in for comprehensions!")
+    assertEquals(
+      e":+1: Love the idea of using :left arrow: in for comprehensions!",
+      s"$upper Love the idea of using :left arrow: in for comprehensions!"
+    )
   }
