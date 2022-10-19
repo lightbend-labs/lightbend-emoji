@@ -9,10 +9,10 @@ Lightbend Emoji is a wrapper around Java's Unicode handling.
 
 Supported Scala versions: 2.12, 2.13, 3
 
-Add to `build.sbt`:
+Add to `build.sbt`, inserting current version:
 
 ```
-libraryDependencies += "com.lightbend" %% "emoji" % "1.2.2"
+libraryDependencies += "com.lightbend" %% "emoji" % "<version>"
 ```
 
 ## Usage
