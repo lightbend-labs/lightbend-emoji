@@ -26,8 +26,8 @@ crossScalaVersions := Seq("2.13.10", "2.12.17", "3.2.1")
 scalaVersion := crossScalaVersions.value.head
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest-wordspec" % "3.2.14" % Test,
-  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.14" % Test,
+  "org.scalatest" %% "scalatest-wordspec" % "3.2.15" % Test,
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.15" % Test,
   "org.scalameta" %% "munit" % "1.0.0-M7" % Test,
 )
 
