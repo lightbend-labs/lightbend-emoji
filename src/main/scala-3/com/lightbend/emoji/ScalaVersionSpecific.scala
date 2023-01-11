@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2022 Lightbend Inc. <http://www.lightbend.com>
+ * Copyright (C) Lightbend Inc. <http://www.lightbend.com>
  */
 package com.lightbend.emoji
 
