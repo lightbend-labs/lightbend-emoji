@@ -22,13 +22,13 @@ ThisBuild / versionScheme := Some("early-semver")
 
 /// build
 
-crossScalaVersions := Seq("2.13.13", "2.12.18", "3.3.1")
+crossScalaVersions := Seq("2.13.13", "2.12.19", "3.3.1")
 scalaVersion := crossScalaVersions.value.head
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest-wordspec" % "3.2.17" % Test,
-  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.17" % Test,
-  "org.scalameta" %% "munit" % "1.0.0-M10" % Test,
+  "org.scalatest" %% "scalatest-wordspec" % "3.2.18" % Test,
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.18" % Test,
+  "org.scalameta" %% "munit" % "1.0.0-M11" % Test,
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
