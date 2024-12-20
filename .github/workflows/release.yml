@@ -13,6 +13,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 8
+      - uses: sbt/setup-sbt@v1
       - uses: olafurpg/setup-gpg@v3
       - run: sbt ci-release
         env:
