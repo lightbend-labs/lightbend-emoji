@@ -7,7 +7,7 @@ Lightbend Emoji is a wrapper around Java's Unicode handling.
 
 ## Installation
 
-Supported Scala versions: 2.12, 2.13, 3
+Supported Scala versions: 3, 2.13
 
 Add to `build.sbt`, inserting current version:
 
