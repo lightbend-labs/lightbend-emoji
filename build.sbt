@@ -38,14 +38,16 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
   }
 )
 
-Compile / console / scalacOptions ~= (_ filterNot Set(
-  "-Xlint",
-  "-Xfatal-warnings"
-))
+Compile / console / scalacOptions ~=
+  (_ filterNot Set(
+    "-Xlint",
+    "-Xfatal-warnings"
+  ))
 
-Test / scalacOptions ~= (_ filterNot Set(
-  "-Xfatal-warnings"
-))
+Test / scalacOptions ~=
+  (_ filterNot Set(
+    "-Xfatal-warnings"
+  ))
 
 console / initialCommands := {
   """import com.lightbend.emoji._
