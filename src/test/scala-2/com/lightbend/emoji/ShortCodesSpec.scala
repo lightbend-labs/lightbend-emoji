@@ -110,7 +110,8 @@ class ShortCodesSpec extends AnyWordSpec {
 
       val smiley = "smiley".emoji
 
-      e"Dear Customer: Have a nice day! :) :smiley:" shouldBe s"Dear Customer: Have a nice day! :) $smiley"
+      e"Dear Customer: Have a nice day! :) :smiley:" shouldBe
+        s"Dear Customer: Have a nice day! :) $smiley"
     }
 
     "also accept backslash-escaped colon as literal colon" in {
