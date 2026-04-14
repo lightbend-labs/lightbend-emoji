@@ -28,7 +28,7 @@ scalaVersion := crossScalaVersions.value.head
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-wordspec" % "3.2.20" % Test,
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.20" % Test,
-  "org.scalameta" %% "munit" % "1.2.4" % Test,
+  "org.scalameta" %% "munit" % "1.3.0" % Test,
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings") ++ (
